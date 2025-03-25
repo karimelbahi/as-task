@@ -4,8 +4,7 @@
 
 • Build a simple Jetpack Compose app that fetches random cat images using the provided public API and displays them in a list. The app should follow Clean Architecture, dependency injection, and unit tests.
 
-• API Details:
- - Use the following API to fetch images: https://api.thecatapi.com/v1/images/search
+• API Details: Use the following API to fetch images: https://api.thecatapi.com/v1/images/search
 
 ## Requirements:
 
@@ -17,12 +16,9 @@
 6. Unit Tests to cover core logic.
 
 ## App Features:
- Fetch and Display Images:
-⁃ On app launch, fetch 10 random images and display them in a list.
+• Fetch and Display Images:On app launch, fetch 10 random images and display them in a list.
 
-• Refresh Button:
-
-⁃ Add a button to fetch a new set of 10 images.
+• Refresh Button: ⁃ Add a button to fetch a new set of 10 images.
 
 • Error Handling:
 ⁃ Display an error screen when:
@@ -49,7 +45,7 @@ error handling.
 
 ## Improvements
 
-* User Mock server
+* Use Mock server
 
 ### Sources
 
@@ -57,12 +53,9 @@ error handling.
 
 ## Video
 
-https://github.com/user-attachments/assets/5d598923-4945-47b4-9df6-34c2fab0edd6
+https://github.com/user-attachments/assets/408d97c9-2d26-48d6-80a0-e96a9a38f429
 
 ## Photos
 
-<img src="/Images/1.png" width=250 height=500  title=""> <img src="/Images/2.png" width=250 height=500 title="" > 
-<img src="/Images/3.png" width=250 height=500  title=""> <img src="/Images/4.png" width=250 height=500  title="" >
-
-
-
+<img src="/Images/1.png" width=245 height=500  title="Loading"> <img src="/Images/2.png" width=245 height=500 title="Network Issue" > 
+<img src="/Images/3.png" width=245 height=500  title="Cats Load"> <img src="/Images/4.png" width=245 height=500  title="Cats List" >
