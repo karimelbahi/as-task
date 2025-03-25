@@ -18,14 +18,7 @@ class CatsRepoImpl @Inject constructor(
     private val webService: WebService,
     private val errorHandler: GeneralErrorHandler,
     private val networkUtils: NetworkUtils
-) :
-    CatsRepo {
-//    @Inject
-//    lateinit var errorHandler: GeneralErrorHandler
-
-//    @Inject
-//    lateinit var networkUtils: NetworkUtils
-
+) :CatsRepo {
     override fun getCats(): Flow<DataState<Cat>> = flow {
 
         return@flow if (networkUtils.isNetworkAvailable()) {

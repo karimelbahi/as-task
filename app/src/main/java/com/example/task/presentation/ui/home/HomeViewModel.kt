@@ -59,7 +59,6 @@ class HomeViewModel @Inject constructor(
                         homeUseCases.getCatUseCase.invoke().collect {
                             when (it) {
                                 is DataState.Error -> {emit(it)}
-
                                 is DataState.Success -> {emit(it)}
                             }
                         }

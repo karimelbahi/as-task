@@ -8,8 +8,6 @@ sealed class ErrorEntity {
 
     data object BadRequest : ErrorEntity()
 
-    data object AccessDenied : ErrorEntity()
-
     data object ServiceUnavailable : ErrorEntity()
 
     data object Unknown : ErrorEntity()
