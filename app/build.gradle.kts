@@ -122,4 +122,18 @@ dependencies {
     // coil
     implementation(libs.coil)
 
+    // Local unit tests
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.junit)
+    testImplementation(libs.archCoreTesting)
+    testImplementation(libs.kotlinx.coroutines.test.v180)
+    testImplementation(libs.truth)
+    debugImplementation(libs.ui.test.manifest)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.okhttp3)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.turbine)
+    implementation(libs.turbine)
+
 }
