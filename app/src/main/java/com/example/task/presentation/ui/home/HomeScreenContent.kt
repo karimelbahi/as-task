@@ -14,7 +14,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.task.R
-import com.example.task.common.component.LoadingDialog
+import com.example.task.common.components.ErrorDialog
+import com.example.task.common.components.LoadingDialog
 import com.example.task.common.utils.noRippleClickable
 import com.example.task.domain.model.CatUIModel
 import com.example.task.presentation.ui.home.components.CatComponent
@@ -23,7 +24,9 @@ import com.example.task.ui.theme.MainMargin
 
 @Composable
 fun HomeScreenContent(
-    stateValue: UIState<CatUIModel>
+    stateValue: UIState<CatUIModel>,
+    onRefresh: () -> Unit,
+    onRetry: () -> Unit,
 ) {
     when (stateValue) {
         UIState.Loading -> {
@@ -31,19 +34,23 @@ fun HomeScreenContent(
         }
 
         is UIState.Success -> {
-            SuccessComponent(stateValue.data)
+            SuccessComponent(stateValue.data, onRefresh)
         }
 
         is UIState.Error -> {
-
+            ErrorDialog(
+                errorMessage = stateValue.error,
+                onRetryClick = { onRetry.invoke() },
+                onDismiss = {}
+            )
         }
     }
-
 }
 
 @Composable
 private fun SuccessComponent(
-    homeData: CatUIModel
+    homeData: CatUIModel,
+    onRefresh: () -> Unit
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -59,7 +66,7 @@ private fun SuccessComponent(
             contentDescription = "Thumb Up",
             modifier =
             Modifier.noRippleClickable {
-            // TODO:
+                onRefresh.invoke()
             },
         )
 
@@ -69,12 +76,13 @@ private fun SuccessComponent(
     }
 }
 
-@Preview(name = "Full Preview", showSystemUi = true, showBackground = true)
+@Preview(name = "Home Preview", showBackground = true)
 @Composable
 private fun SuccessComponentPreview() {
     SuccessComponent(
         homeData = CatUIModel(
             cats = listOf()
-        )
+        ),
+        onRefresh = { },
     )
 }

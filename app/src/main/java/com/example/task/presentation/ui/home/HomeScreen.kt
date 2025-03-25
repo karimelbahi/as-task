@@ -14,5 +14,9 @@ fun HomeScreen() {
     LaunchedEffect(Unit) {
         viewModel.onEvent(HomeScreenIntent.GetHomeData)
     }
-    HomeScreenContent(stateValue)
+    HomeScreenContent(
+        stateValue,
+        onRefresh = { viewModel.onEvent(HomeScreenIntent.OnReFetch) },
+        onRetry = { viewModel.onEvent(HomeScreenIntent.OnReFetch)}
+    )
 }

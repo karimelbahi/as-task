@@ -6,4 +6,6 @@ import kotlinx.serialization.Serializable
 sealed interface HomeScreenIntent {
     @Serializable
     data object GetHomeData : HomeScreenIntent
+    @Serializable
+    data object OnReFetch : HomeScreenIntent
 }

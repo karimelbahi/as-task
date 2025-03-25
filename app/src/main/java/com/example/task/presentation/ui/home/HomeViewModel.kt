@@ -10,6 +10,7 @@ import com.example.task.presentation.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asFlow
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 const val CATS_LIST_NUM = 10
+const val REQUEST_DELAY = 100L
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -37,31 +39,53 @@ class HomeViewModel @Inject constructor(
     fun onEvent(intent: HomeScreenIntent) {
         when (intent) {
             HomeScreenIntent.GetHomeData -> {
-                getHomePage()
+                getCats()
+            }
+
+            HomeScreenIntent.OnReFetch -> {
+                _state.value = UIState.Loading
+                getCats()
             }
         }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getHomePage() {
-
+    fun getCats() {
         viewModelScope.launch(Dispatchers.IO) {
             val cats = (1..CATS_LIST_NUM).asFlow()
-                .flatMapMerge {
+                .flatMapMerge(concurrency = 3) {
                     flow {
+                        delay(REQUEST_DELAY)
                         homeUseCases.getCatUseCase.invoke().collect {
                             when (it) {
-                                is DataState.Error -> emit(Cat())
-                                is DataState.Success -> emit(it.data)
+                                is DataState.Error -> {emit(it)}
+
+                                is DataState.Success -> {emit(it)}
                             }
                         }
                     }
                 }.toList()
 
-            if (cats.any { it.url != null }) {
-                _state.value = UIState.Success(CatUIModel(cats))
+            if (cats.any { it is DataState.Error }) {
+                when (val error = cats[0]) {
+                    is DataState.Error -> {
+                        _state.value = UIState.Error(error.error)
+                    }
+
+                    is DataState.Success -> {}
+                }
+
             } else {
-                _state.value = UIState.Error(CatUIModel())
+                _state.value = UIState.Success(CatUIModel(cats.extractCats()))
+            }
+        }
+    }
+
+    private fun List<DataState<Cat>>.extractCats(): List<Cat> {
+        return this.mapNotNull { dataState ->
+            when (dataState) {
+                is DataState.Success -> dataState.data
+                is DataState.Error -> null
             }
         }
     }
