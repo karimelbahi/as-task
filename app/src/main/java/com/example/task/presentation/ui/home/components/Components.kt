@@ -18,6 +18,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.task.common.components.MyImageWithCoil
+import com.example.task.common.utils.TestTags.CAT_IMAGE
+import com.example.task.common.utils.TestTags.CAT_ITEM
 import com.example.task.data.api.model.Cat
 
 @Composable
@@ -30,7 +32,7 @@ fun CatComponent(cat: Cat) {
             .border(
                 border = BorderStroke(2.dp, Color(0xffdfdfdf)),
                 shape = RoundedCornerShape(16.dp)
-            ).testTag("cat_item")
+            ).testTag(CAT_ITEM)
         ,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -41,7 +43,7 @@ fun CatComponent(cat: Cat) {
                 .height(116.dp)
                 .padding(4.dp)
                 .clip(shape = RoundedCornerShape(14.dp))
-                .testTag("cat_image_${cat.id}"),
+                .testTag("$CAT_IMAGE${cat.id}"),
             imageUrl = cat.url
         )
 
@@ -53,7 +55,7 @@ fun CatComponent(cat: Cat) {
 private fun CatComponentPreview() {
     CatComponent(
         Cat(
-            height = null, id = null, url = null, width = null
+            height = null, id = "1", url = null, width = null
         )
     )
 }

@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.task.R
+import com.example.task.common.utils.TestTags.LOADING_DIALOG
+import com.example.task.common.utils.TestTags.RETRY_BUTTON
 import com.example.task.ui.theme.colorRed
 
 
@@ -46,7 +48,7 @@ fun DefaultLoading() {
         contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.testTag("loading_dialog"),
+            modifier = Modifier.testTag(LOADING_DIALOG),
             color = colorRed,
         )
     }
@@ -85,7 +87,7 @@ fun ErrorDialog(
                         onRetryClick()
                         onDismiss()
                     },
-                    modifier = Modifier.testTag("retry_button"),
+                    modifier = Modifier.testTag(RETRY_BUTTON),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.secondary,
                         contentColor = Color.White

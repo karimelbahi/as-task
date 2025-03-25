@@ -7,6 +7,10 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import com.example.task.common.utils.TestTags.CATS_LIST
+import com.example.task.common.utils.TestTags.CAT_ITEM
+import com.example.task.common.utils.TestTags.LOADING_DIALOG
+import com.example.task.common.utils.TestTags.REFRESH_BUTTON
 import com.example.task.data.api.model.Cat
 import com.example.task.domain.model.CatUIModel
 import com.example.task.presentation.ui.home.HomeScreenContent
@@ -34,7 +38,7 @@ internal class HomeScreenContentTest {
 
         // Then
         composeTestRule
-            .onNodeWithTag("loading_dialog")
+            .onNodeWithTag(LOADING_DIALOG)
             .assertExists()
             .assertIsDisplayed()
     }
@@ -101,13 +105,13 @@ internal class HomeScreenContentTest {
 
         // Then
         composeTestRule
-            .onNodeWithTag("cats_list")
+            .onNodeWithTag(CATS_LIST)
             .assertExists()
             .assertIsDisplayed()
 
         // Verify refresh button is displayed
         composeTestRule
-            .onNodeWithTag("refresh_button")
+            .onNodeWithTag(REFRESH_BUTTON)
             .assertExists()
             .assertIsDisplayed()
     }
@@ -128,7 +132,7 @@ internal class HomeScreenContentTest {
 
         // When
         composeTestRule
-            .onNodeWithTag("refresh_button")
+            .onNodeWithTag(REFRESH_BUTTON)
             .performClick()
 
         // Then
@@ -152,7 +156,7 @@ internal class HomeScreenContentTest {
 
         // Then
         composeTestRule
-            .onAllNodesWithTag("cat_item")
+            .onAllNodesWithTag(CAT_ITEM)
             .assertCountEquals(numberOfCats)
     }
 
