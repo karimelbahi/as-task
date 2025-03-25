@@ -1,10 +1,12 @@
 [versions]
 agp = "8.5.0"
+core = "1.5.0"
 kotlin = "1.9.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+kotlinxCoroutinesTest = "1.8.0"
 lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.8.0"
 composeBom = "2024.04.01"
@@ -19,12 +21,14 @@ hiltTestVersion = "2.50"
 # Coroutine
 kotlinCoroutinesVersion="1.7.2"
 #compose
+mockk = "1.13.10"
 navigationcompose="2.8.0-alpha08"
 lifecycleviewmodelcompose="2.6.2"
 #data store
 androidxDataStore = "1.0.0"
 
 # retrofit
+okHttp = "4.12.0"
 retrofit = "2.9.0"
 sqaure_logger = "5.0.0-alpha.2"
 okhttp3 = "4.11.0"
@@ -43,9 +47,13 @@ coil = "2.4.0"
 arch_core_testing = "2.2.0"
 mokito_kotlin= "2.2.0"
 kotlinx_coroutines = "1.7.2"
+truth = "1.1.4"
+turbine = "1.0.0"
+uiTestManifest = "1.6.3"
 
 
 [libraries]
+androidx-core = { module = "androidx.test:core", version.ref = "core" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -61,6 +69,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-foundation = {group = "androidx.compose.foundation" ,name = "foundation", version.ref = "foundationCompose"}
+kotlinx-coroutines-test-v180 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 # testing
@@ -92,6 +101,8 @@ androidx-datastorepreferences = {group = "androidx.datastore",name = "datastore-
 androidx-datastorepreferencescore = {group = "androidx.datastore",name = "datastore-preferences-core",version.ref = "androidxDataStore"}
 
 # retrofit
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okHttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit_gson_converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 sqaure_logger = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "sqaure_logger" }
@@ -108,6 +119,9 @@ chuckerteam = { module = "com.github.chuckerteam.chucker:library", version.ref =
 chuckerteam_no_op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
 
 
 [plugins]
