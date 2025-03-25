@@ -43,6 +43,10 @@ error handling.
 * uni testing
 * UI testing
 
+## Bonus
+
+* UI testing
+
 ## Improvements
 
 * Use Mock server
