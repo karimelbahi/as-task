@@ -15,8 +15,8 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideCatsUseCase(catsRepo: CatsRepo): HomeUseCases{
-        return HomeUseCases(GetCatUseCase(catsRepo))
+    fun provideHomeUseCases(catsRepo: CatsRepo): HomeUseCases{
+        return HomeUseCases(getCatUseCase = GetCatUseCase(catsRepo))
     }
 
 }
