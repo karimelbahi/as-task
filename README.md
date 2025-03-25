@@ -61,5 +61,5 @@ https://github.com/user-attachments/assets/408d97c9-2d26-48d6-80a0-e96a9a38f429
 
 ## Photos
 
-<img src="/Images/1.png" width=245 height=500  title="Loading"> <img src="/Images/2.png" width=245 height=500 title="Network Issue" > 
-<img src="/Images/3.png" width=245 height=500  title="Cats Load"> <img src="/Images/4.png" width=245 height=500  title="Cats List" >
+<img src="/Images/1.png" width=260 height=500  title="Loading"> <img src="/Images/2.png" width=260 height=500 title="Network Issue" > 
+<img src="/Images/3.png" width=260 height=500  title="Cats Load"> <img src="/Images/4.png" width=260 height=500  title="Cats List" >
