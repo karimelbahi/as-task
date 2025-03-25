@@ -12,7 +12,7 @@ object TestTags {
 
     // Cat Items
     const val CAT_ITEM = "cat_item"
-    const val CATS_LIST ="cats_list"
+    const val CATS_LIST = "cats_list"
 
     const val CAT_IMAGE = "cat_image_"
 }
