@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.task.common.components.MyImageWithCoil
@@ -29,7 +30,8 @@ fun CatComponent(cat: Cat) {
             .border(
                 border = BorderStroke(2.dp, Color(0xffdfdfdf)),
                 shape = RoundedCornerShape(16.dp)
-            ),
+            ).testTag("cat_item")
+        ,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -38,7 +40,8 @@ fun CatComponent(cat: Cat) {
                 .fillMaxWidth()
                 .height(116.dp)
                 .padding(4.dp)
-                .clip(shape = RoundedCornerShape(14.dp)),
+                .clip(shape = RoundedCornerShape(14.dp))
+                .testTag("cat_image_${cat.id}"),
             imageUrl = cat.url
         )
 

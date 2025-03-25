@@ -28,8 +28,6 @@ import com.example.task.R
 import com.example.task.ui.theme.colorRed
 
 
-const val LOADING_DIALOG_TAG = "LoadingIndicator"
-
 @Composable
 fun LoadingDialog(isDialogOpen: Boolean = true) {
     if (isDialogOpen) {
@@ -48,7 +46,7 @@ fun DefaultLoading() {
         contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.testTag(LOADING_DIALOG_TAG),
+            modifier = Modifier.testTag("loading_dialog"),
             color = colorRed,
         )
     }
@@ -86,7 +84,8 @@ fun ErrorDialog(
                     onClick = {
                         onRetryClick()
                         onDismiss()
-                              },
+                    },
+                    modifier = Modifier.testTag("retry_button"),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.secondary,
                         contentColor = Color.White

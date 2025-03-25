@@ -10,6 +10,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,7 +58,8 @@ private fun SuccessComponent(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(MainMargin),
+            .padding(MainMargin)
+            .testTag("cats_list"),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -65,9 +67,11 @@ private fun SuccessComponent(
             painter = painterResource(id = R.drawable.baseline_refresh_24),
             contentDescription = "Thumb Up",
             modifier =
-            Modifier.noRippleClickable {
-                onRefresh.invoke()
-            },
+            Modifier
+                .testTag("refresh_button")
+                .noRippleClickable {
+                    onRefresh.invoke()
+                },
         )
 
         for (cat in homeData.cats) {
@@ -80,9 +84,7 @@ private fun SuccessComponent(
 @Composable
 private fun SuccessComponentPreview() {
     SuccessComponent(
-        homeData = CatUIModel(
-            cats = listOf()
-        ),
+        homeData = CatUIModel(cats = listOf()),
         onRefresh = { },
     )
 }
