@@ -14,7 +14,7 @@ import com.example.task.common.utils.TestTags.REFRESH_BUTTON
 import com.example.task.data.api.model.Cat
 import com.example.task.domain.model.CatUIModel
 import com.example.task.presentation.ui.home.HomeScreenContent
-import com.example.task.presentation.utils.UIState
+import com.example.task.presentation.utils.DataState
 import org.junit.Rule
 import org.junit.Test
 
@@ -30,7 +30,7 @@ internal class HomeScreenContentTest {
         // Given
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Loading,
+                stateValue = DataState.Loading,
                 onRefresh = {},
                 onRetry = {}
             )
@@ -50,7 +50,7 @@ internal class HomeScreenContentTest {
 
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Error(errorMessage),
+                stateValue = DataState.Error(errorMessage),
                 onRefresh = {},
                 onRetry = {}
             )
@@ -75,7 +75,7 @@ internal class HomeScreenContentTest {
 
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Error("Test error"),
+                stateValue = DataState.Error("Test error"),
                 onRefresh = {},
                 onRetry = { retryClicked = true }
             )
@@ -97,7 +97,7 @@ internal class HomeScreenContentTest {
 
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Success(catUIModel),
+                stateValue = DataState.Success(catUIModel),
                 onRefresh = {},
                 onRetry = {}
             )
@@ -124,7 +124,7 @@ internal class HomeScreenContentTest {
 
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Success(catUIModel),
+                stateValue = DataState.Success(catUIModel),
                 onRefresh = { refreshClicked = true },
                 onRetry = {}
             )
@@ -148,7 +148,7 @@ internal class HomeScreenContentTest {
 
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Success(catUIModel),
+                stateValue = DataState.Success(catUIModel),
                 onRefresh = {},
                 onRetry = {}
             )
@@ -167,7 +167,7 @@ internal class HomeScreenContentTest {
 
         composeTestRule.setContent {
             HomeScreenContent(
-                stateValue = UIState.Success(catUIModel),
+                stateValue = DataState.Success(catUIModel),
                 onRefresh = {},
                 onRetry = {}
             )

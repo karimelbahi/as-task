@@ -8,7 +8,6 @@ import com.example.task.domain.usecases.HomeUseCases
 import com.example.task.presentation.ui.home.HomeScreenIntent
 import com.example.task.presentation.ui.home.HomeViewModel
 import com.example.task.presentation.utils.DataState
-import com.example.task.presentation.utils.UIState
 import com.example.task.utils.MainDispatcherRule
 import com.example.task.utils.fakeCats
 import com.example.task.utils.fakeCat
@@ -53,7 +52,7 @@ class HomeViewModelTest {
     fun `test initial state`(): Unit = runTest {
         sut.state.test {
             val item = awaitItem()
-            assertThat(item).isEqualTo(UIState.Loading)
+            assertThat(item).isEqualTo(DataState.Loading)
         }
     }
 
@@ -61,28 +60,28 @@ class HomeViewModelTest {
     fun `test calling onEvent GetCategoryMeals -  state is Success`(): Unit = runTest {
 
         sut.state.test {
-            assertThat(awaitItem()).isEqualTo(UIState.Loading)
+            assertThat(awaitItem()).isEqualTo(DataState.Loading)
             coEvery {
                 homeUseCases.getCatUseCase()
             } returns flow {
                 emit(DataState.Success(fakeCat))
             }
             sut.onEvent(HomeScreenIntent.GetHomeData)
-            assertThat(awaitItem()).isEqualTo(UIState.Success(fakeCats.toCatUIModel()))
+            assertThat(awaitItem()).isEqualTo(DataState.Success(fakeCats.toCatUIModel()))
         }
     }
 
     @Test
     fun `test calling onEvent GetCategoryMeals -  state is Failed`(): Unit = runTest {
         sut.state.test {
-            assertThat(awaitItem()).isEqualTo(UIState.Loading)
+            assertThat(awaitItem()).isEqualTo(DataState.Loading)
             coEvery {
                 homeUseCases.getCatUseCase()
             } returns flow {
                 emit(DataState.Error("Error"))
             }
             sut.onEvent(HomeScreenIntent.GetHomeData)
-            assertThat(awaitItem()).isEqualTo(UIState.Error("Error"))
+            assertThat(awaitItem()).isEqualTo(DataState.Error("Error"))
         }
     }
 

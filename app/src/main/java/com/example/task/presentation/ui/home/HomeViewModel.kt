@@ -6,7 +6,6 @@ import com.example.task.data.api.model.Cat
 import com.example.task.domain.model.CatUIModel
 import com.example.task.domain.usecases.HomeUseCases
 import com.example.task.presentation.utils.DataState
-import com.example.task.presentation.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,12 +27,12 @@ const val REQUEST_DELAY = 100L
 class HomeViewModel @Inject constructor(
     private val homeUseCases: HomeUseCases,
 ) : ViewModel() {
-    private val _state = MutableStateFlow<UIState<CatUIModel>>(UIState.Loading)
+    private val _state = MutableStateFlow<DataState<CatUIModel>>(DataState.Loading)
 
     val state = _state.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(),
-        initialValue = UIState.Loading,
+        initialValue = DataState.Loading,
     )
 
     fun onEvent(intent: HomeScreenIntent) {
@@ -43,7 +42,7 @@ class HomeViewModel @Inject constructor(
             }
 
             HomeScreenIntent.OnReFetch -> {
-                _state.value = UIState.Loading
+                _state.value = DataState.Loading
                 getCats()
             }
         }
@@ -60,6 +59,7 @@ class HomeViewModel @Inject constructor(
                             when (it) {
                                 is DataState.Error -> {emit(it)}
                                 is DataState.Success -> {emit(it)}
+                                DataState.Loading -> {}
                             }
                         }
                     }
@@ -68,14 +68,14 @@ class HomeViewModel @Inject constructor(
             if (cats.any { it is DataState.Error }) {
                 when (val error = cats[0]) {
                     is DataState.Error -> {
-                        _state.value = UIState.Error(error.error)
+                        _state.value = DataState.Error(error.error)
                     }
-
                     is DataState.Success -> {}
+                    DataState.Loading -> {}
                 }
 
             } else {
-                _state.value = UIState.Success(CatUIModel(cats.extractCats()))
+                _state.value = DataState.Success(CatUIModel(cats.extractCats()))
             }
         }
     }
@@ -85,6 +85,7 @@ class HomeViewModel @Inject constructor(
             when (dataState) {
                 is DataState.Success -> dataState.data
                 is DataState.Error -> null
+                DataState.Loading -> null
             }
         }
     }

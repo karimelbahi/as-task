@@ -23,25 +23,25 @@ import com.example.task.common.utils.TestTags.REFRESH_BUTTON
 import com.example.task.common.utils.noRippleClickable
 import com.example.task.domain.model.CatUIModel
 import com.example.task.presentation.ui.home.components.CatComponent
-import com.example.task.presentation.utils.UIState
+import com.example.task.presentation.utils.DataState
 import com.example.task.ui.theme.MainMargin
 
 @Composable
 fun HomeScreenContent(
-    stateValue: UIState<CatUIModel>,
+    stateValue: DataState<CatUIModel>,
     onRefresh: () -> Unit,
     onRetry: () -> Unit,
 ) {
     when (stateValue) {
-        UIState.Loading -> {
+        DataState.Loading -> {
             LoadingDialog()
         }
 
-        is UIState.Success -> {
+        is DataState.Success -> {
             CatsListComponent(stateValue.data, onRefresh)
         }
 
-        is UIState.Error -> {
+        is DataState.Error -> {
             ErrorDialog(
                 errorMessage = stateValue.error,
                 onRetryClick = { onRetry.invoke() },
